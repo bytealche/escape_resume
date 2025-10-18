@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESUME</title>
+  <link rel="icon" type="image/png" size="32*32" href="{{ url_for('static', filename='static/assets/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+  </div>
+
+  <div class="game-container">
+    <div class="hero">
+      <h1>🔐 ESCAPE MY RESUME</h1>
+      <p class="subtitle">Crack 6 Advanced Challenges to Unlock the Complete Profile</p>
+      
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-label">Levels</div>
+          <div class="stat-value">6</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Difficulty</div>
+          <div class="stat-value">⭐⭐⭐⭐</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Time Limit</div>
+          <div class="stat-value">4:00</div>
+        </div>
+      </div>
+
+      <a href="{{ url_for('level', num=1) }}" class="start-btn">Initialize Mission</a>
+      
+      <div class="game-info">
+        <h2 style="margin-top: 60px; font-size: 1.8rem; color: #00f2fe;">How It Works</h2>
+        <p style="max-width: 700px; margin: 20px auto; line-height: 1.8; color: #a0aec0;">
+          Each level presents a unique puzzle. Solve it to unlock a section of the resume. 
+          Use hints if you're stuck, but they cost you precious time. Can you beat the clock 
+          and discover the complete profile?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+    // Initialize home page
+    generateStars();
+  </script>
+  <script>
+  // Reset total timer whenever the homepage loads
+  localStorage.removeItem('remainingTime');
+  console.log('Timer reset on homepage reload');
+</script>
+
+</body>
+</html>

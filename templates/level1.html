@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESUME</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='static/assets/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressBar" style="width: 16.67%;"></div>
+  </div>
+
+  <div class="game-container">
+    <div class="level-screen">
+      <div class="level-header">
+        <div class="level-title">Level 1: Binary Decoder</div>
+        <div class="timer" id="timer">5:00</div>
+      </div>
+      
+      <p style="margin: 20px 0;">Decode this binary sequence to reveal the candidate's first name:</p>
+      
+      <div class="code-puzzle">
+        01000001 01101110 01101001 01101011 01100101 01110100
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="nameInput" placeholder="Enter decoded name...">
+        <button class="action-btn" onclick="checkAnswer()">Decrypt</button>
+      </div>
+
+      <button class="hint-btn" onclick="showHint()">💡 Request Hint (Cost: 5s)</button>
+      <div id="result"></div>
+      
+      <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+    generateStars();
+    startTimer(300);
+
+    function showHint() {
+      useHint('Each pair of digits (8 bits) represents one letter. Use an ASCII/Binary converter or look up a binary-to-text table.');
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById('nameInput').value.trim().toLowerCase();
+      if(input === 'aniket') {
+        saveProgress(1);
+        document.getElementById('result').innerHTML = `
+          <div class="result-box">
+            <div class="success">✅ ACCESS GRANTED</div>
+            <div class="resume-section">
+              <h3>Identity Module Unlocked</h3>
+              <p><strong>Name:</strong> Aniket</p>
+              <p><strong>Email:</strong> aniket.dev@techmail.com</p>
+              <p><strong>Location:</strong> Bangalore, India</p>
+              <p><strong>Phone:</strong> +91-9876543210</p>
+            </div>
+            <a href="{{ url_for('level', num=2) }}" class="action-btn" style="display: inline-block; margin-top: 20px; text-decoration: none;">
+              Proceed to Level 2 →
+            </a>
+          </div>
+        `;
+      } else {
+        document.getElementById('result').innerHTML = `
+          <div class="result-box"><div class="error">❌ Access Denied. Try again.</div></div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

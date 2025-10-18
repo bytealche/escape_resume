@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESUME</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='static/assets/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressBar" style="width: 50%;"></div>
+  </div>
+
+  <div class="game-container">
+    <div class="level-screen">
+      <div class="level-header">
+        <div class="level-title">Level 3: Pattern Matrix</div>
+        <div class="timer" id="timer">5:00</div>
+      </div>
+      
+      <p style="margin: 20px 0;">Solve the pattern and enter the missing number:</p>
+      
+      <div class="code-puzzle">
+        3, 7, 15, 31, ?, 127
+      </div>
+
+      <div class="input-group">
+        <input type="number" id="patternInput" placeholder="Missing number...">
+        <button class="action-btn" onclick="checkAnswer()">Verify</button>
+      </div>
+
+      <button class="hint-btn" onclick="showHint()">💡 Request Hint (Cost: 5s)</button>
+      <div id="result"></div>
+      
+      <a href="{{ url_for('level', num=2) }}" class="back-link">← Previous Level</a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+    generateStars();
+    startTimer(300);
+
+    function showHint() {
+      useHint('Look at the pattern: each number is (previous number × 2) + 1. For example: 3×2+1=7, 7×2+1=15, etc.');
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById('patternInput').value;
+      if(input === '63') {
+        saveProgress(3);
+        document.getElementById('result').innerHTML = `
+          <div class="result-box">
+            <div class="success">✅ PATTERN SOLVED</div>
+            <div class="resume-section">
+              <h3>Education Credentials Unlocked</h3>
+              <p><strong>Degree:</strong> B.Tech in Computer Science</p>
+              <p><strong>Institution:</strong> Indian Institute of Technology (IIT)</p>
+              <p><strong>CGPA:</strong> 8.7/10</p>
+              <p><strong>Graduation Year:</strong> 2019</p>
+              <p><strong>Key Subjects:</strong> Data Structures, Algorithms, Machine Learning, Database Systems</p>
+            </div>
+            <a href="{{ url_for('level', num=4) }}" class="action-btn" style="display: inline-block; margin-top: 20px; text-decoration: none;">
+              Proceed to Level 4 →
+            </a>
+          </div>
+        `;
+      } else {
+        document.getElementById('result').innerHTML = `
+          <div class="result-box"><div class="error">❌ Incorrect. Analyze the pattern more carefully.</div></div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

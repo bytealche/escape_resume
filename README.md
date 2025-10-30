@@ -4,7 +4,7 @@
 
 ## 📝 Description
 
-Escape_Resume is a unique and engaging resume experience built with Python, transforming the traditional resume into an interactive game. Showcase your skills and experience in a memorable way by letting recruiters 'play' through your career journey. This project offers a creative alternative to standard resumes, designed to capture attention and highlight your qualifications through gamification.
+Escape_Resume is a unique and engaging resume experience built with Python, transforming the traditional resume into an interactive game. Memorably showcase your skills and experience by letting recruiters 'play' through your career journey. This project offers a creative alternative to standard resumes, designed to capture attention and highlight your qualifications through gamification.
 
 ## 🛠️ Tech Stack
 
